@@ -42,11 +42,10 @@ public class MemberDAO {
 	public int regist(String email, String password) {
 		// 1 : 가입 성공, 0 : 가입 실패
 		int result = 0;
-		String sql = "insert into member_login value('" + email + "', '" + password + "')";
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection.prepareStatement(sql);
+			pStatement = connection.prepareStatement("insert into member_login value('" + email + "', '" + password + "')");
 			
 			connection.setAutoCommit(false);
 			
