@@ -1,3 +1,4 @@
+package connectionMgr;
 /**
  * Copyright(c) 2001 iSavvix Corporation (http://www.isavvix.com/)
  *
@@ -22,16 +23,11 @@
  * TO THE SOFTWARE.
  *
  */
-package connectionMgr;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+
 import java.sql.*;
 import java.util.Properties;
 import java.util.Vector;
-
-import oracle.net.aso.p;
 
 
 /**
@@ -44,13 +40,12 @@ public class DBConnectionMgr {
     //커넥션풀을 벡터로 구성
 	//private MemberDBMgr mem =null;
     private Vector connections = new Vector(10);
-    /* MySQL */
-//	private String _driver = "org.gjt.mm.mysql.Driver";
-//	private String _url = "jdbc:mysql://localhost:3306/mydb?useUnicode=true&characterEncoding=UTF-8";
-//	private String _user = "root";
-//	private String _password = "1234";
+    /*   MySQL
+	private String _driver = "org.gjt.mm.mysql.Driver",
+    _url = "jdbc:mysql://127.0.0.1:3306/mydb?useUnicode=true&characterEncoding=EUC_KR",
+    _user = "root",
+    _password = "1234"; */
 
-    /* Oracle */
     private String _driver = "oracle.jdbc.driver.OracleDriver";
     private String _url = "jdbc:oracle:thin:@KEONYEONG:1521:orcl";
     private String _user = "delivery";
@@ -65,27 +60,15 @@ public class DBConnectionMgr {
     //커넥션풀객체를 선언
     private static DBConnectionMgr instance = null;
 
-    public DBConnectionMgr() throws IOException {
-    	Properties properties = new Properties();
-    	FileInputStream inputStream = new FileInputStream("C:/Users/User/eclipse-workspace/JspBoard(model2)/src/main/webapp/dbtest/dbmysql.properties");
-    	properties.load(inputStream);
-    	inputStream.close();
-    	_driver = properties.getProperty("jdbc.drivers");
-    	if (_driver != null) {
-    		System.setProperty("jdbc.drivers", _driver);
-    	}
-    	_url = properties.getProperty("jdbc.url");
-    	_user = properties.getProperty("jdbc.username");
-    	_password = properties.getProperty("jdbc.password");
+    public DBConnectionMgr() {
     }
 
     /** Use this method to set the maximum number of open connections before
      unused connections are closed.
-     * @throws IOException 
      */
   
     //커넥션풀을 얻어오는 정적메소드
-    public static DBConnectionMgr getInstance() throws IOException {
+    public static DBConnectionMgr getInstance() {
         //커넥션풀이 생성이 안되어있다면
 		if (instance == null) {
             synchronized (DBConnectionMgr.class) {
