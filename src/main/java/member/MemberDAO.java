@@ -42,7 +42,7 @@ public class MemberDAO {
 
 	// 중복값 체크
 	public boolean checkMemberInfo(String data, int type) {
-		// data 1: 이메일, 2: 전화번호, 3: 닉네임 중복값 체크
+		// type = 1: 이메일, 2: 전화번호, 3: 닉네임 중복값 체크
 		boolean result = false;
 		String checkType = "";
 
@@ -114,7 +114,6 @@ public class MemberDAO {
 	// 회원탈퇴
 	public int deleteMember(String email, String password, String reason_withdraw) {
 		// result가 0보다 크면 탈퇴 성공
-		int[] resultArray = {};
 		int result = 0;
 
 		try {
