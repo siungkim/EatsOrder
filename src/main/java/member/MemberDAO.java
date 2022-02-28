@@ -4,6 +4,11 @@ import java.sql.*;
 
 import connectionMgr.DBConnectionMgr;
 
+/*
+ * 구현된 기능
+ * 로그인, 중복값 체크, 회원가입, 회원탈퇴, 회원수정, 탈퇴한지 30일 지난 회원정보 제거, 회원조회
+*/
+
 public class MemberDAO {
 	private DBConnectionMgr connectionMgr;
 	private Connection connection;
@@ -193,6 +198,7 @@ public class MemberDAO {
 		return result;
 	}
 
+	// 탈퇴한지 30일 지난 회원정보 제거
 	public int removeMemberInfo() {
 		// 탈퇴 후 30일이 지난 회원정보를 member_info 테이블에서 제거
 		int result = -1;
