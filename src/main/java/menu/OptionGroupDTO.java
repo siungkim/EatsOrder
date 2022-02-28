@@ -3,7 +3,7 @@ package menu;
 public class OptionGroupDTO {
 	private int group_id;
 	private String group_name;
-	private boolean essential;
+	private int essential;
 
 	public int getGroup_id() {
 		return group_id;
@@ -21,11 +21,11 @@ public class OptionGroupDTO {
 		this.group_name = group_name;
 	}
 
-	public boolean is_essential() {
+	public int is_essential() {
 		return essential;
 	}
 
-	public void set_essential(boolean essential) {
+	public void set_essential(int essential) {
 		this.essential = essential;
 	}
 }
