@@ -5,6 +5,16 @@ public class OptionGroupDTO {
 	private String group_name;
 	private int essential;
 
+	public OptionGroupDTO() {
+		super();
+	}
+
+	public OptionGroupDTO(int group_id, String group_name, int essential) {
+		this.group_id = group_id;
+		this.group_name = group_name;
+		this.essential = essential;
+	}
+
 	public int getGroup_id() {
 		return group_id;
 	}
