@@ -10,7 +10,23 @@ public class MemberInfoDTO {
 	private int point;
 	private Date join_date;
 	private Date withdraw_date;
-	private boolean receive_marketing;
+	private int receive_marketing;
+
+	public MemberInfoDTO() {
+		super();
+	}
+	
+	public MemberInfoDTO(String email, String nickname, String phone, String membership, int point, Date join_date,
+			Date withdraw_date, int receive_marketing) {
+		this.email = email;
+		this.nickname = nickname;
+		this.phone = phone;
+		this.membership = membership;
+		this.point = point;
+		this.join_date = join_date;
+		this.withdraw_date = withdraw_date;
+		this.receive_marketing = receive_marketing;
+	}
 
 	public String getEmail() {
 		return email;
@@ -68,11 +84,11 @@ public class MemberInfoDTO {
 		this.withdraw_date = withdraw_date;
 	}
 
-	public boolean isReceive_marketing() {
+	public int getReceive_marketing() {
 		return receive_marketing;
 	}
 
-	public void setReceive_marketing(boolean receive_marketing) {
+	public void setReceive_marketing(int receive_marketing) {
 		this.receive_marketing = receive_marketing;
 	}
 }
