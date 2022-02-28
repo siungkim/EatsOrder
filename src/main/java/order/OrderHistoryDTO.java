@@ -2,7 +2,7 @@ package order;
 
 import java.sql.Date;
 
-public class OrderDTO {
+public class OrderHistoryDTO {
 	private int order_number;
 	private String orderer;
 	private String destination;
@@ -11,8 +11,26 @@ public class OrderDTO {
 	private String payment_method;
 	private Date pay_date;
 	private String order_request;
-	private boolean payment_status;
+	private int payment_status;
 	private String reason_cancellation;
+
+	public OrderHistoryDTO() {
+		super();
+	}
+
+	public OrderHistoryDTO(int order_number, String orderer, String destination, String coupon_id, int used_point,
+			String payment_method, Date pay_date, String order_request, int payment_status, String reason_cancellation) {
+		this.order_number = order_number;
+		this.orderer = orderer;
+		this.destination = destination;
+		this.coupon_id = coupon_id;
+		this.used_point = used_point;
+		this.payment_method = payment_method;
+		this.pay_date = pay_date;
+		this.order_request = order_request;
+		this.payment_status = payment_status;
+		this.reason_cancellation = reason_cancellation;
+	}
 
 	public int getOrder_number() {
 		return order_number;
@@ -78,11 +96,11 @@ public class OrderDTO {
 		this.order_request = order_request;
 	}
 
-	public boolean isPayment_status() {
+	public int isPayment_status() {
 		return payment_status;
 	}
 
-	public void setPayment_status(boolean payment_status) {
+	public void setPayment_status(int payment_status) {
 		this.payment_status = payment_status;
 	}
 
