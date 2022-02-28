@@ -305,6 +305,7 @@ public class MemberDAO {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement(
 					"update member_login set password='" + password + "' where email='" + email + "'");
+			result = pStatement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
