@@ -17,7 +17,33 @@ public class RestaurantDTO {
 	private String estimated_time;
 	private String rst_photo;
 	private String rst_logo;
-	private boolean enable;
+	private int enable;
+	
+	public RestaurantDTO() {
+		super();
+	}
+
+	public RestaurantDTO(int rst_id, int category_id, String rst_name, String phone, String address, int min_order, String origin,
+			String hours, String bussiness_number, String bussiness_name, String payment, int delivery_tip, String rst_notice,
+			String estimated_time, String rst_photo, String rst_logo, int enable) {
+		this.rst_id = rst_id;
+		this.category_id = category_id;
+		this.rst_name = rst_name;
+		this.phone = phone;
+		this.address = address;
+		this.min_order = min_order;
+		this.origin = origin;
+		this.hours = hours;
+		this.bussiness_number = bussiness_number;
+		this.bussiness_name = bussiness_name;
+		this.payment = payment;
+		this.delivery_tip = delivery_tip;
+		this.rst_notice = rst_notice;
+		this.estimated_time = estimated_time;
+		this.rst_photo = rst_photo;
+		this.rst_logo = rst_logo;
+		this.enable = enable;
+	}
 
 	public int getRst_id() {
 		return rst_id;
@@ -147,11 +173,11 @@ public class RestaurantDTO {
 		this.rst_logo = rst_logo;
 	}
 
-	public boolean is_enable() {
+	public int is_enable() {
 		return enable;
 	}
 
-	public void set_enable(boolean enable) {
+	public void set_enable(int enable) {
 		this.enable = enable;
 	}
 }

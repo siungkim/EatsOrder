@@ -7,7 +7,21 @@ public class MenuDTO {
 	private String menu_info;
 	private String menu_photo;
 	private int price;
-	private boolean enable;
+	private int enable;
+
+	public MenuDTO() {
+		super();
+	}
+
+	public MenuDTO(int menu_id, int category_id, String menu_name, String menu_info, String menu_photo, int price, int enable) {
+		this.menu_id = menu_id;
+		this.category_id = category_id;
+		this.menu_name = menu_name;
+		this.menu_info = menu_info;
+		this.menu_photo = menu_photo;
+		this.price = price;
+		this.enable = enable;
+	}
 
 	public int getMenu_id() {
 		return menu_id;
@@ -57,11 +71,11 @@ public class MenuDTO {
 		this.price = price;
 	}
 
-	public boolean is_enable() {
+	public int is_enable() {
 		return enable;
 	}
 
-	public void set_enable(boolean enable) {
+	public void set_enable(int enable) {
 		this.enable = enable;
 	}
 }

@@ -5,7 +5,19 @@ public class OptionDTO {
 	private int group_id;
 	private String option_name;
 	private int price;
-	private boolean enable;
+	private int enable;
+
+	public OptionDTO() {
+		super();
+	}
+
+	public OptionDTO(int option_id, int group_id, String option_name, int price, int enable) {
+		this.option_id = option_id;
+		this.group_id = group_id;
+		this.option_name = option_name;
+		this.price = price;
+		this.enable = enable;
+	}
 
 	public int getOption_id() {
 		return option_id;
@@ -39,11 +51,11 @@ public class OptionDTO {
 		this.price = price;
 	}
 
-	public boolean is_enable() {
+	public int is_enable() {
 		return enable;
 	}
 
-	public void set_enable(boolean enable) {
+	public void set_enable(int enable) {
 		this.enable = enable;
 	}
 }
