@@ -260,7 +260,7 @@ public class MemberDAO {
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement(
-					"select email from member_info where phone='" + phone + "' and " + "withdraw_date=null");
+					"select email from member_info where phone='" + phone + "' and " + "withdraw_date is null");
 			resultSet = pStatement.executeQuery();
 
 			if (resultSet.next()) {
@@ -282,7 +282,7 @@ public class MemberDAO {
 		try {
 			connection = connectionMgr.getConnection();
 			pStatement = connection.prepareStatement("select * from member_info where email='" + email + "' and phone='"
-					+ phone + "' and withdraw_date=null");
+					+ phone + "' and withdraw_date is null");
 			resultSet = pStatement.executeQuery();
 
 			result = resultSet.next();
