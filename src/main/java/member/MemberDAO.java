@@ -6,7 +6,7 @@ import connectionMgr.DBConnectionMgr;
 
 /*
  * 구현된 기능
- * 로그인, 중복값 체크, 회원가입, 회원탈퇴, 회원수정, 탈퇴한지 30일 지난 회원정보 제거, 회원조회
+ * 로그인, 중복값 체크, 회원가입, 회원탈퇴, 회원수정, 탈퇴한지 30일 지난 회원정보 제거, 회원조회, 아이디/비밀번호 찾기
 */
 
 public class MemberDAO {
@@ -30,8 +30,8 @@ public class MemberDAO {
 
 		try {
 			connection = connectionMgr.getConnection();
-			pStatement = connection
-					.prepareStatement("select * from member_login where email='" + email + "' and password='" + password + "'");
+			pStatement = connection.prepareStatement(
+					"select * from member_login where email='" + email + "' and password='" + password + "'");
 			resultSet = pStatement.executeQuery();
 
 			result = resultSet.next();
@@ -89,15 +89,17 @@ public class MemberDAO {
 		try {
 			connection = connectionMgr.getConnection();
 
-			pStatement = connection.prepareStatement("insert into member_info(email, phone, nickname, receive_marketing) values('"
-					+ email + "', '" + phone + "', '" + nickname + "', " + irm + ")");
+			pStatement = connection
+					.prepareStatement("insert into member_info(email, phone, nickname, receive_marketing) values('" + email
+							+ "', '" + phone + "', '" + nickname + "', " + irm + ")");
 
 			connection.setAutoCommit(false);
 
 			result = pStatement.executeUpdate();
 			if (result > 0) {
 				connection.commit();
-				pStatement = connection.prepareStatement("insert into member_login values('" + email + "', '" + password + "')");
+				pStatement = connection
+						.prepareStatement("insert into member_login values('" + email + "', '" + password + "')");
 				result = pStatement.executeUpdate();
 				if (result > 0) {
 					connection.commit();
@@ -136,14 +138,14 @@ public class MemberDAO {
 						result = pStatement.executeUpdate();
 						if (result > 0) {
 							System.out.println("로그인 정보 삭제 성공");
-							pStatement = connection
-									.prepareStatement("update member_info set withdraw_date=sysdate where email='" + email + "'");
+							pStatement = connection.prepareStatement(
+									"update member_info set withdraw_date=sysdate where email='" + email + "'");
 							result = pStatement.executeUpdate();
 							if (result > 0) {
 								System.out.println("회원탈퇴일 수정 성공");
 								pStatement = connection
-										.prepareStatement("insert into withdraw_member values(member_index_seq.nextval, '" + email
-												+ "', sysdate, '" + reason_withdraw + "')");
+										.prepareStatement("insert into withdraw_member values(member_index_seq.nextval, '"
+												+ email + "', sysdate, '" + reason_withdraw + "')");
 								result = pStatement.executeUpdate();
 							}
 						}
@@ -183,8 +185,8 @@ public class MemberDAO {
 						.prepareStatement("update member_login set password='" + password + "' where email='" + email + "'");
 				result = pStatement.executeUpdate();
 				if (result > 0) {
-					pStatement = connection.prepareStatement("update member_info set phone='" + phone + "', nickname='" + nickname
-							+ "', receive_marketing=" + irm + " where email='" + email + "'");
+					pStatement = connection.prepareStatement("update member_info set phone='" + phone + "', nickname='"
+							+ nickname + "', receive_marketing=" + irm + " where email='" + email + "'");
 					result = pStatement.executeUpdate();
 					connection.commit();
 				}
@@ -235,12 +237,75 @@ public class MemberDAO {
 			if (resultSet.next()) {
 				result = new MemberInfoDTO(resultSet.getString("email"), resultSet.getString("phone"),
 						resultSet.getString("nickname"), resultSet.getString("membership"), resultSet.getInt("point"),
-						resultSet.getDate("join_date"), resultSet.getDate("join_date"), resultSet.getInt("receive_marketing"));
+						resultSet.getDate("join_date"), resultSet.getDate("join_date"),
+						resultSet.getInt("receive_marketing"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+
+		return result;
+	}
+
+	// 아이디 찾기
+	public String findEmail(String phone) {
+		// 전화번호에 해당하는 email 반환. 해당 정보가 없으면 null 반환
+		String result = null;
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement(
+					"select email from member_info where phone='" + phone + "' and " + "withdraw_date=null");
+			resultSet = pStatement.executeQuery();
+
+			if (resultSet.next()) {
+				result = resultSet.getString("email");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+
+		return result;
+	}
+
+	// 비밀번호 재설정을 위한 정보 화인
+	public boolean checkValidMember(String email, String phone) {
+		boolean result = false;
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select * from member_info where email='" + email + "' and phone='"
+					+ phone + "' and withdraw_date=null");
+			resultSet = pStatement.executeQuery();
+
+			result = resultSet.next();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+
+		return result;
+	}
+
+	// 비밀번호 재설정
+	public int resetPassword(String email, String password) {
+		// 이메일과 전화번호에 해당하는 비밀번호 재설정
+		// result = -1 : 해당정보 없음, 0 : 비밀번호 재설정 실패, 1 : 비밀번호 재설정 성공
+		int result = -1;
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement(
+					"update member_login set password='" + password + "' where email='" + email + "'");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement);
 		}
 
 		return result;
