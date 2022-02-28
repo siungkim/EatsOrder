@@ -181,13 +181,16 @@ public class MemberDAO {
 
 			connection.setAutoCommit(false);
 			if (resultSet.next()) {
-				pStatement = connection
-						.prepareStatement("update member_login set password='" + password + "' where email='" + email + "'");
+				pStatement = connection.prepareStatement("update member_info set phone='" + phone + "', nickname='"
+						+ nickname + "', receive_marketing=" + irm + " where email='" + email + "'");
 				result = pStatement.executeUpdate();
-				if (result > 0) {
-					pStatement = connection.prepareStatement("update member_info set phone='" + phone + "', nickname='"
-							+ nickname + "', receive_marketing=" + irm + " where email='" + email + "'");
+				if (result > 0 && !password.isBlank()) {
+					pStatement = connection.prepareStatement(
+							"update member_login set password='" + password + "' where email='" + email + "'");
 					result = pStatement.executeUpdate();
+				}
+				
+				if (result > 0) {
 					connection.commit();
 				}
 			}
