@@ -4,6 +4,15 @@ public class FavoriteRestaurantDTO {
 	private String email;
 	private int rst_id;
 
+	public FavoriteRestaurantDTO() {
+		super();
+	}
+
+	public FavoriteRestaurantDTO(String email, int rst_id) {
+		this.email = email;
+		this.rst_id = rst_id;
+	}
+
 	public String getEmail() {
 		return email;
 	}

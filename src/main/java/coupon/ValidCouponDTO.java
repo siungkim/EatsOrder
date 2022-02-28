@@ -10,6 +10,20 @@ public class ValidCouponDTO {
 	private int discount_amount;
 	private Date expiration_date;
 
+	public ValidCouponDTO() {
+		super();
+	}
+
+	public ValidCouponDTO(String coupon_id, String coupon_name, String coupon_info, int available_price, int discount_amount,
+			Date expiration_date) {
+		this.coupon_id = coupon_id;
+		this.coupon_name = coupon_name;
+		this.coupon_info = coupon_info;
+		this.available_price = available_price;
+		this.discount_amount = discount_amount;
+		this.expiration_date = expiration_date;
+	}
+
 	public String getCoupon_id() {
 		return coupon_id;
 	}

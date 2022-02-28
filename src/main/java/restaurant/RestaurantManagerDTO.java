@@ -5,6 +5,16 @@ public class RestaurantManagerDTO {
 	private String password;
 	private String phone;
 
+	public RestaurantManagerDTO() {
+		super();
+	}
+
+	public RestaurantManagerDTO(int rst_id, String password, String phone) {
+		this.rst_id = rst_id;
+		this.password = password;
+		this.phone = phone;
+	}
+
 	public int getRst_id() {
 		return rst_id;
 	}

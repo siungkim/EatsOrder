@@ -6,6 +6,17 @@ public class OrderDetailDTO {
 	private int option_id;
 	private int quantity;
 
+	public OrderDetailDTO() {
+		super();
+	}
+
+	public OrderDetailDTO(int order_number, int menu_id, int option_id, int quantity) {
+		this.order_number = order_number;
+		this.menu_id = menu_id;
+		this.option_id = option_id;
+		this.quantity = quantity;
+	}
+
 	public int getOrder_number() {
 		return order_number;
 	}

@@ -10,6 +10,19 @@ public class NoticeDTO {
 	private String content;
 	private int category;	// 1:일반공지, 2:이벤트공지, 3:FAQ
 
+	public NoticeDTO() {
+		super();
+	}
+
+	public NoticeDTO(int number, String writer, Date regist_date, String title, String content, int category) {
+		this.number = number;
+		this.writer = writer;
+		this.regist_date = regist_date;
+		this.title = title;
+		this.content = content;
+		this.category = category;
+	}
+
 	public int getNumber() {
 		return number;
 	}

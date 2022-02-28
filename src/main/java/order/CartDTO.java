@@ -6,6 +6,17 @@ public class CartDTO {
 	private int option_id;
 	private int quantity;
 
+	public CartDTO() {
+		super();
+	}
+
+	public CartDTO(String orderer, int menu_id, int option_id, int quantity) {
+		Orderer = orderer;
+		this.menu_id = menu_id;
+		this.option_id = option_id;
+		this.quantity = quantity;
+	}
+
 	public String getOrderer() {
 		return Orderer;
 	}

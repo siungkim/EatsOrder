@@ -4,6 +4,15 @@ public class MenuOptionDTO {
 	private int menu_id;
 	private int option_id;
 
+	public MenuOptionDTO() {
+		super();
+	}
+
+	public MenuOptionDTO(int menu_id, int option_id) {
+		this.menu_id = menu_id;
+		this.option_id = option_id;
+	}
+
 	public int getMenu_id() {
 		return menu_id;
 	}

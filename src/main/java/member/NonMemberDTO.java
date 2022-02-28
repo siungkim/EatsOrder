@@ -4,6 +4,15 @@ public class NonMemberDTO {
 	private String phone;
 	private String password;
 
+	public NonMemberDTO() {
+		super();
+	}
+
+	public NonMemberDTO(String phone, String password) {
+		this.phone = phone;
+		this.password = password;
+	}
+
 	public String getPhone() {
 		return phone;
 	}

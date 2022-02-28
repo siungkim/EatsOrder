@@ -5,6 +5,16 @@ public class OwnedCouponDTO {
 	private String owner_id;
 	private int available_count;
 
+	public OwnedCouponDTO() {
+		super();
+	}
+
+	public OwnedCouponDTO(String coupon_id, String owner_id, int available_count) {
+		this.coupon_id = coupon_id;
+		this.owner_id = owner_id;
+		this.available_count = available_count;
+	}
+
 	public String getCoupon_id() {
 		return coupon_id;
 	}

@@ -4,6 +4,15 @@ public class MemberLoginDTO {
 	private String email;
 	private String password;
 
+	public MemberLoginDTO() {
+		super();
+	}
+
+	public MemberLoginDTO(String email, String password) {
+		this.email = email;
+		this.password = password;
+	}
+
 	public String getEmail() {
 		return email;
 	}

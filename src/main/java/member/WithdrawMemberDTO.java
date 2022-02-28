@@ -7,6 +7,16 @@ public class WithdrawMemberDTO {
 	private Date withdraw_date;
 	private String reason_withdraw;
 
+	public WithdrawMemberDTO() {
+		super();
+	}
+
+	public WithdrawMemberDTO(String email, Date withdraw_date, String reason_withdraw) {
+		this.email = email;
+		this.withdraw_date = withdraw_date;
+		this.reason_withdraw = reason_withdraw;
+	}
+
 	public String getEmail() {
 		return email;
 	}

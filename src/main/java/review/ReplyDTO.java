@@ -8,6 +8,17 @@ public class ReplyDTO {
 	private Date regist_time;
 	private String content;
 
+	public ReplyDTO() {
+		super();
+	}
+
+	public ReplyDTO(int reply_number, int number, Date regist_time, String content) {
+		this.reply_number = reply_number;
+		this.number = number;
+		this.regist_time = regist_time;
+		this.content = content;
+	}
+
 	public int getReply_number() {
 		return reply_number;
 	}

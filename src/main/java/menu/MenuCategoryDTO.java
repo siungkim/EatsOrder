@@ -5,6 +5,16 @@ public class MenuCategoryDTO {
 	private String category_name;
 	private int rst_id;
 
+	public MenuCategoryDTO() {
+		super();
+	}
+
+	public MenuCategoryDTO(int category_id, String category_name, int rst_id) {
+		this.category_id = category_id;
+		this.category_name = category_name;
+		this.rst_id = rst_id;
+	}
+
 	public int getCategory_id() {
 		return category_id;
 	}

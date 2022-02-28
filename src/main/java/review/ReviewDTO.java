@@ -14,6 +14,24 @@ public class ReviewDTO {
 	private String photo5;
 	private int rating;
 
+	public ReviewDTO() {
+		super();
+	}
+
+	public ReviewDTO(int number, int order_number, Date regist_date, String content, String photo1, String photo2, String photo3,
+			String photo4, String photo5, int rating) {
+		this.number = number;
+		this.order_number = order_number;
+		this.regist_date = regist_date;
+		this.content = content;
+		this.photo1 = photo1;
+		this.photo2 = photo2;
+		this.photo3 = photo3;
+		this.photo4 = photo4;
+		this.photo5 = photo5;
+		this.rating = rating;
+	}
+
 	public int getNumber() {
 		return number;
 	}
