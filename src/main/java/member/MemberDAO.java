@@ -216,4 +216,27 @@ public class MemberDAO {
 
 		return result;
 	}
+
+	// 회원조회
+	public MemberInfoDTO getMember(String email) {
+		MemberInfoDTO result = null;
+
+		try {
+			connection = connectionMgr.getConnection();
+			pStatement = connection.prepareStatement("select * from member_info where email='" + email + "'");
+			resultSet = pStatement.executeQuery();
+
+			if (resultSet.next()) {
+				result = new MemberInfoDTO(resultSet.getString("email"), resultSet.getString("phone"),
+						resultSet.getString("nickname"), resultSet.getString("membership"), resultSet.getInt("point"),
+						resultSet.getDate("join_date"), resultSet.getDate("join_date"), resultSet.getInt("receive_marketing"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			connectionMgr.freeConnection(connection, pStatement, resultSet);
+		}
+
+		return result;
+	}
 }
