@@ -240,7 +240,7 @@ public class MemberDAO {
 			if (resultSet.next()) {
 				result = new MemberInfoDTO(resultSet.getString("email"), resultSet.getString("phone"),
 						resultSet.getString("nickname"), resultSet.getString("membership"), resultSet.getInt("point"),
-						resultSet.getDate("join_date"), resultSet.getDate("join_date"),
+						resultSet.getDate("join_date"), resultSet.getDate("withdraw_date"),
 						resultSet.getInt("receive_marketing"));
 			}
 		} catch (Exception e) {
