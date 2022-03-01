@@ -30,6 +30,7 @@ public class CouponDAO {
 	public int insertValidCoupon(String coupon_id, String coupon_name, String coupon_info, int available_price,
 			int discount_amount, Date expiration_date) {
 		// result가 0보다 크면 새로운 유효쿠폰 추가 성공
+		// expiration_date는 java.sql.Date.valueOf() 메소드를 통해 "yyyy-mm-dd" 형태의 문자열을 Date 타입으로 바꿔야함
 		int result = -1;
 
 		try {
