@@ -47,7 +47,7 @@ public class DBConnectionMgr {
     _password = "1234"; */
 
     private String _driver = "oracle.jdbc.driver.OracleDriver";
-    private String _url = "jdbc:oracle:thin:@KEONYEONG:1521:orcl";
+    private String _url = "jdbc:oracle:thin:@localhost:1521:orcl";
     private String _user = "delivery";
     private String _password = "1234";
 
